@@ -1,0 +1,195 @@
+﻿@model DoctorAppointment_ManagementSystem.Models.User
+
+@{
+    if (Convert.ToInt32(Session["UserRole"])==1)
+    {
+        Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+        ViewBag.Title = "Details";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Profile";
+    }
+
+}
+
+<style>
+    .custom .dl-horizontal dt{
+    
+    font-weight: bolder;
+    font-size:16px;
+    font-family:sans-serif;
+    justify-content:flex-end;
+    margin-bottom:3px;
+
+    }
+
+      .custom .dl-horizontal dd{
+    
+    font-size:16px;
+    font-family:sans-serif;
+
+    text-decoration:none;
+
+    
+
+    }
+
+</style>
+
+
+
+<div class="custom" style="display:flex; justify-content:left;">
+    @if (Convert.ToInt32(Session["UserRole"]) == 1)
+    {
+        <h4>User</h4>
+    }
+  
+
+    <img src="~/Images/userlogo.png" style="width:100px; height:100px; margin-top:30px;" /><br />
+    <dl class="dl-horizontal">
+            <dt style="font-weight:bold; font-size:20px; margin-bottom:20px;">
+                @*@Html.DisplayFor(model => model.FullName).ToString().ToUpper()*@
+               
+            </dt>
+            <dd >
+                                
+               
+        </dd>
+        <dt>
+           Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            Username
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+      
+        <dt>
+            Phone
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CNIC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CNIC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        @if (Convert.ToInt32(Session["UserRoleId"]) == 1)
+        {
+
+            <dt>
+                @Html.DisplayNameFor(model => model.isActive)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.isActive)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreatedDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdatedDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UpdatedDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdatedBy)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UpdatedBy)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Role.RoleName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Role.RoleName)
+            </dd>
+
+
+        }
+    </dl>
+
+          </div>
+@if (Convert.ToInt32(Session["UserRole"]) == 1)
+{
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.User_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+}

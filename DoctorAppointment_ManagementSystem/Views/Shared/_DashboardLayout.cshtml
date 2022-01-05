@@ -1,0 +1,119 @@
+﻿
+@{ 
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <title>Admin Dashboard</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="shortcut icon" href="~/Content/favicon_16.ico" />
+    <link rel="bookmark" href="~/Content/favicon_16.ico" />
+    <!-- site css -->
+    <link rel="stylesheet" href="~/Content/site.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
+
+    <script type="text/javascript" src="~/scripts/site.min.js"></script>
+
+</head>
+<body>
+    <!--nav-->
+    <nav role="navigation" class="navbar navbar-custom" >
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button data-target="#bs-content-row-navbar-collapse-5" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="bs-content-row-navbar-collapse-5" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                
+                    <!-- <li class="disabled"><a href="#">Link</a></li> -->
+                    <li class="dropdown">
+                       @if (Session["FullName"] != null)
+                       {
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Hello, @Session["FullName"] <b class="caret"></b></a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li class="dropdown-header">Setting</li>
+                           
+                            <li class="divider"></li>
+                            <li class="active"><a href="~/Users/Details/@Session["UserID"]">My Profile</a></li>
+                            <li class="divider"></li>
+                            <li class="disabled"><a>@Html.ActionLink("Signout","Logout","Account");</a></li>
+                        </ul>
+                       }
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <!--header-->
+    <div class="container-fluid">
+        <!--documents-->
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation" >
+                <ul class="list-group panel">
+                    <li class="list-group-item"><i class="glyphicon glyphicon-align-justify"></i> <b>SIDE PANEL</b></li>
+                    <li class="list-group-item">
+                        <img src="~/Images/userlogo.png" style="max-width:80px; margin-left: 36px;" class="img-responsive" alt="Admin logo" />
+                        <p style="font-weight:bold; font-size:16px;  margin-left: auto;">@Session["FullName"] <span style="font-size:14px; font-family:'Segoe UI';">(Admin)</span> </p>
+                      
+                    </li>   
+                   @*<img src="~/Images/adminlogo.png" style="max-width:80px; margin-left: 36px;" class="img-responsive" alt="Admin logo"/>*@
+                    @*<li class="list-group-item"> </li>*@
+                    <li class="list-group-item"><a href="~/Users/Index2"><i class="glyphicon glyphicon-home"></i>Dashboard </a></li>
+                    <li class="list-group-item"><a href="~/Roles/Create"><i class="glyphicon glyphicon-th-list"></i>Create Roles</a></li>
+                    <li class="list-group-item"><a href="~/Specializations/Create"><i class="glyphicon glyphicon-list-alt"></i>Create Specialization</a></li>
+                    <li class="list-group-item"><a href="~/Appointments/Index"><i class="glyphicon glyphicon-bell"></i>View Appointments</a></li>
+                    <li class="list-group-item"><a href="~/Timeslots/Create"><i class="glyphicon glyphicon-indent-left"></i>Create Timeslots</a></li>
+                    <li class="list-group-item"><a href="~/DocTimes/Create"><i class="glyphicon glyphicon-calendar"></i>Assign Timeslots</a></li>
+                    <li class="list-group-item"><a href="~/Messages/Index"><i class="glyphicon glyphicon-font"></i>Messages</a></li>
+                    @*<li class="list-group-item"><a href=""><i class="glyphicon glyphicon-minus"></i>Footers</a></li>
+                    <li class="list-group-item"><a href=""><i class="glyphicon glyphicon-list-alt"></i>Panels</a></li>
+                    <li class="list-group-item"><a href=""><i class="glyphicon glyphicon-th-list"></i>Navs</a></li>
+                    <li class="list-group-item"><a href=""><i class="glyphicon glyphicon-tint"></i>Colors</a></li>
+                    <li class="list-group-item"><a href=""><i class="glyphicon glyphicon-th"></i>Flex</a></li>
+                    <li class="list-group-item"><a href=""><i class="glyphicon glyphicon-lock"></i>Login</a></li>*@
+                    <li>
+                        <a href="#demo3" class="list-group-item " data-toggle="collapse">User Management<span class="glyphicon glyphicon-chevron-right"></span></a>
+                        <div class="collapse" id="demo3">
+                            <a href="~/Users/Create" class="list-group-item">Create User</a>
+                            <a href="~/Users/Index" class="list-group-item">Total Users</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#demo4" class="list-group-item " data-toggle="collapse">Appointments<span class="glyphicon glyphicon-chevron-right"></span></a>
+                    <li class="collapse" id="demo4">
+                        <a href="~/appointments/New" class="list-group-item">Create Appointment</a>
+                        <a href="~/appointments/Index" class="list-group-item">Total Appointments</a>
+                      
+                    </li>
+              
+                   
+                </ul>
+            </div>
+            @RenderBody()
+      </div>
+        </div>
+
+</body>
+</html>
+
+
+<script>
+    $("#dropdown").select2();
+</script>

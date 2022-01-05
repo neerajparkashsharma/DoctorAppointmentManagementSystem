@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DoctorAppointment_ManagementSystem.Models.appointment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointmentNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User1.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timeslot.slotName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User1.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timeslot.slotName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AppID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AppID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AppID })
+        </td>
+    </tr>
+}
+
+</table>

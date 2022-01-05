@@ -1,0 +1,88 @@
+﻿@model DoctorAppointment_ManagementSystem.Models.appointment
+
+@{ ViewBag.Title = "Your Appointments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.2/js/dataTables.jqueryui.min.js"></script>
+
+
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel='stylesheet' type='text/css'>
+<link href="https://cdn.datatables.net/1.11.2/css/dataTables.jqueryui.min.css" rel='stylesheet' type='text/css'>
+<script>
+    $("a[href$= '/appointments/AllAppointments']").addClass("active");
+</script>
+
+
+<h2 style="font-family: 'Teko', 'sans-serif'; ">Your Appointments</h2>
+
+
+
+
+<table class="display" id="tbl" style="width: 100%; border-radius: 3px; font-family: Calibri; ">
+    <thead>
+        <tr>
+
+            @if (Convert.ToInt32(Session["UserRole"]) == 2)
+            {
+                <th>
+                    Patient
+                </th>
+            }
+            else if (Convert.ToInt32(Session["UserRole"]) == 3)
+            {
+                <td>
+                    Appointment#
+                </td>
+            }
+            <th>
+                Date
+            </th>
+
+            <th>
+                Slot
+            </th>
+
+        </tr>
+    </thead>
+
+
+
+    <tbody>
+        @for (var i = 0; i < ViewBag.data.Count; i++)
+        {
+            var item = ViewBag.data[i];
+
+
+            <tr>
+                @if (Convert.ToInt32(Session["UserRole"]) == 2)
+                {
+                    <td>@item.User1.FullName</td>
+                }
+
+                else if (Convert.ToInt32(Session["UserRole"]) == 3)
+                {
+                    <td>@item.AppointmentNo</td>
+                }
+
+                <td>@item.AppDate.ToString("dd MMM yyyy")</td>
+                <td>@item.timeslot.slotName</td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+
+<script>
+
+    $(document).ready(function () {
+        $('#tbl').DataTable();
+    });
+
+</script>
+

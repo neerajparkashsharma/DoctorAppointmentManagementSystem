@@ -1,0 +1,253 @@
+﻿@model IEnumerable<DoctorAppointment_ManagementSystem.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var grid = new WebGrid(canPage: true, rowsPerPage: 15);
+    grid.Bind(source: Model, rowCount: ViewBag.TotalRows, autoSortAndPage: false);
+}
+<br />
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.tb
+{
+max-width:40%;
+margin-left:0;
+}
+    </style>
+
+  @*a.FullName.Contains(search) ||
+                         a.UserName.Contains(search) ||
+                          a.Gender.Contains(search) ||
+                           a.DOB.ToString().Contains(search) ||
+                            a.UserName.Contains(search) ||
+                           a.Role.RoleName.Contains(search) ||
+                           a.CNIC.Contains(search) ||
+                           a.CreatedDate.ToString().Contains(search) ||
+                              a.UpdatedDate.ToString().Contains(search) ||
+                              a.UpdatedBy.ToString().Contains(search) ||
+                                a.CreatedBy.ToString().Contains(search) ||
+                           a.Phone.Contains(search) ||
+                           a.isActive.ToString().Contains(search) ||
+                           a.Email.Contains(search)||
+                           a.Address.Contains(search) ||
+                           a.City.Contains(search)*@
+<div class="container">
+    <div>
+
+        <div>
+            @using (Html.BeginForm("Index", "Users", FormMethod.Get))
+            {
+                <div class="d-lg-inline-block">
+                    <input type="search" name="search" value="@ViewBag.search" class="form-control" placeholder="Search" style="width:199px;"/>
+                    <br />
+                    <button type="submit" value="Search" class="btn btn-success" style="margin-left:130px; margin-top:0px;">Search</button>
+                </div>
+               
+                <br />
+                
+            }
+
+
+        </div>
+    </div>
+    <div class="tb">
+        @grid.Table(
+    tableStyle: "table table-responsive table-bordered",
+    columns: grid.Columns(
+        grid.Column(columnName: "UserName", header: "Username"),
+        grid.Column(columnName: "Gender", header: "Gender"),
+        //grid.Column(columnName: "DOB", header: "Date Of Birth"),
+        grid.Column(columnName: "CNIC", header: "CNIC"),
+        grid.Column(columnName: "Role.RoleName", header: "Role"),
+         grid.Column(columnName: "Phone", header: "Phone"),
+         grid.Column(columnName: "Email", header: "Email"),
+         grid.Column(columnName: "City", header: "City"),
+          grid.Column(columnName: "Address", header: "Address"),
+           grid.Column(columnName: "IsActive", header: "IsActive"),
+             //grid.Column(columnName: "CreatedDate", header: "CreatedDate"),
+             // grid.Column(columnName: "UpdatedDate", header: "UpdatedDate"),
+             grid.Column(header: "Edit",
+             format: @<a data-value="" href="Edit/@item.User_ID">Edit</a>
+
+             ),
+               grid.Column(header: "Details",
+             format: @<a data-value="" href="Details/@item.User_ID">Details</a>
+
+             )
+
+                )
+               )
+       
+                <div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            @grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-small pagination-right")
+                        </div>
+                    </div>
+                </div>
+
+                @Html.Hidden("dir", grid.SortDirection)
+                @Html.Hidden("col", grid.SortColumn)
+            </div>
+
+        </div>
+        @*<div class="container-fluid">
+                <div class="row">
+                    @using (Html.BeginForm("Index","Users",FormMethod.Post))
+                    {
+
+                        <div class="row">
+                            @Html.TextBox("searchTxt", null, new { @class = "form-control", @placeholder = "Search your text here", @style = "max-width: 30%;" })<button class="btn btn-primary" style="margin-left:405px;" type="submit">Search</button>
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+            <div class="row" style="overflow-x:auto;">
+                <div class="col-md-12">
+                    <table id="indextable" class="table table-responsive">
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserName)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Phone)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DOB)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Gender)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CNIC)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.City)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Address)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.isActive)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CreatedDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UpdatedDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CreatedBy)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UpdatedBy)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Role.RoleName)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                        {
+                                <tr>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DOB)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Gender)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CNIC)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.City)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.isActive)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UpdatedDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UpdatedBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Role.RoleName)
+                                    </td>
+                                    <td>*@
+@*<a href="#" class="btn btn-primary" onclick="location.href='@Url.Action("Edit","Users")'">Edit</a>*@
+
+@*@Html.ActionLink("Edit", "Edit", new { id = item.User_ID}) |*@
+@*@Html.ActionLink("Details", "Details", new { id = item.User_ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.User_ID })
+                        </td>
+                    </tr>
+            }
+            </tbody>
+        </table>
+
+
+    </div>
+    </div>*@
+<input type="button" class="btn btn-primary" value="Create" id="" onclick="location.href='@Url.Action("Create")'" />
+<script src="~/scripts/bootstrap.min.js"></script>
+<script src="~/scripts/jquery-3.1.1.js"></script>
+
+<script>
+        $(function () {
+            try {
+                var dir = $('#dir').val();
+                var col = $('#col').val();
+                var header = $("th a[href*=" + col + "]");
+                if (dir == "Ascending") {
+                    header.text(header.text() + "  ▲")
+                }
+                if (dir == "Descending") {
+                    header.text(header.text() + "  ▼");
+                }
+
+            } catch (e) {
+
+            }
+        })
+</script>
+<script>
+    var msg = '@TempData["Message"]';
+    if (msg.length) {
+        alert(msg);
+    }
+</script>

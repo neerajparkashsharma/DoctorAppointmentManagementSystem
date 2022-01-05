@@ -1,0 +1,40 @@
+﻿@model IEnumerable<DoctorAppointment_ManagementSystem.Models.Doc_Specialization>
+
+@{
+    ViewBag.Title = "GetSpecializations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetSpecializations</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specialization.specializationName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in ViewBag.Data) {
+    <tr>
+        <td>
+           @item.User.FullName
+        </td>
+        <td>
+            @item.Specialization.specializationName
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
