@@ -1,0 +1,27 @@
+﻿@model DoctorAppointment_ManagementSystem.Models.Specialization
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Specialization</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.specializationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.specializationName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SpecializationId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

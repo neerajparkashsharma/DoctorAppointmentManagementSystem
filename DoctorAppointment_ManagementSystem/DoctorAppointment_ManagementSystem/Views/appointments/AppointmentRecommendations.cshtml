@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Appointment Recommendations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var data = ViewBag.data;
+}
+
+<link rel="stylesheet" href="/Content/assets/css/app.min.css">
+<link rel="stylesheet" href="/Content/assets/bundles/chocolat/dist/css/chocolat.css">
+<!-- Template CSS -->
+<link rel="stylesheet" href="/Content/assets/css/style.css">
+<link rel="stylesheet" href="/Content/assets/css/components.css">
+<!-- Custom style CSS -->
+<link rel="stylesheet" href="/Content/assets/css/custom.css">
+<link rel="stylesheet" href="/Content/assets/bundles/chocolat/dist/css/chocolat.css">
+<h2></h2>
+<h2 class="section-title">@data.AppointmentNo</h2>
+<p class="section-lead">
+    BY DR. @(data.User == null? "N/A" : data.User.FullName.ToUpper() )
+    <br />
+    RECOMMENDATION TO: @(data.User1 == null? "N/A" : data.User1.FullName.ToUpper() )
+</p>
+
+@if (ViewBag.list.Count == 0)
+{
+<div class="card">
+    <div class="card-header">
+        <h4>Appointment Recommendation</h4>
+        <div class="card-header-action">
+
+        </div>
+        <div class="collapse show" id="mycard-collapse">
+            <div class="card-body">
+           No Recommendation made for this appointment yet!
+            </div>
+            @*<div class="card-footer">
+                Card Footer
+            </div>*@
+        </div>
+    </div>
+</div>
+
+
+}
+else
+{
+int i = 0; 
+    foreach (var item in ViewBag.list)
+    {
+        i += 1;
+
+
+            <div class="card">
+                <div class="card-header">
+                    <h4>Appointment Recommendation - @i</h4>
+                    <div class="card-header-action">
+                        
+                    </div>
+                </div>
+                <div class="collapse show" id="mycard-collapse">
+                    <div class="card-body">
+                        @item.Recommendation
+                    </div>
+                    @*<div class="card-footer">
+                        Card Footer
+                    </div>*@
+                </div>
+            </div>
+
+
+    }
+    }
+<script src="/Content/assets/bundles/chocolat/dist/js/jquery.chocolat.min.js"></script>
+
+<script src="/Content/assets/js/app.min.js"></script>
+<!-- JS Libraies -->
+<script src="/Content/assets/bundles/chocolat/dist/js/jquery.chocolat.min.js"></script>
+<script src="/Content/assets/bundles/jquery-ui/jquery-ui.min.js"></script>
+<!-- Page Specific JS File -->
+<!-- Template JS File -->
+<script src="/Content/assets/js/scripts.js"></script>
+<!-- Custom JS File -->
+<script src="/Content/assets/js/custom.js"></script>

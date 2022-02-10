@@ -1,0 +1,70 @@
+﻿     div.polaroid {
+            width: 100%;
+            height:auto;
+            
+            text-align: center;
+            border-radius: 0px;
+
+           
+        }
+
+        div.container {
+            margin-top:50px;
+            padding: 17px;
+
+
+        }
+
+.polaroid {
+    width: auto;
+    height: auto;
+    padding: 4px;
+    margin: 40px 0px;
+}
+
+.NAME {
+    margin:10px;
+     font-size:1.5em;
+     text-align:right;
+}
+
+.img {
+     display: table-cell; 
+     width:auto;
+     height:auto;
+}
+
+/*dt{ 
+    display: table-cell;   
+    font-size:1.1em;
+    text-align:center;
+    margin:5px;
+    padding:4px;
+}*/
+
+
+/** {
+  box-sizing: border-box;
+}*/
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 2px;
+  height: auto; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}

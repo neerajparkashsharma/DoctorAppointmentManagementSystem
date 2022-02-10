@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "Our Doctors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+
+    <link href="~/CustomStyle/DoclistProfiles.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome.css" rel="stylesheet" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<script>
+    $("a[href$= '/Users/OurDoctors']").addClass("active");
+</script>
+
+<div class="row">
+
+    @foreach (var item in ViewBag.List)
+    {
+
+      
+            <div class="column">
+                <div class="polaroid">
+
+                    <div>
+
+                        @if (item.Gender == "Male")
+                        {
+                            <img src="~/Images/docmale2.jpeg" style="width:50%;" />
+
+                        }
+                        else
+                        {
+                            <img src="~/Images/docfemale.png" style="width:50%;" />
+                        }
+                    </div>
+
+
+                    <label style="font-size:12px;"> (@item.UserName)</label>
+
+                    <div style="font-family: Century Gothic; font-weight: bold ">
+                        DR.  @item.FullName.ToUpper()
+
+
+                    </div>
+                    <div>
+                        <form action="/appointments/New">
+
+                            <input type="button" id="btn" class="btn btn-primary" style="background-color: rgb(64, 0, 130);" value="View Profile" data-id="@item.User_ID" />
+
+                            <button type="submit" id="btn2" class="btn btn-dark" value="@item.User_ID" name="Doctor_ID" data-id="@item.User_ID">Book Appointment</button>
+                        </form>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                </div>
+        </div>
+
+    }
+
+</div>
+<script src="~/scripts/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+
+        // Initialization
+        $(".column .polaroid div #btn").on("click", function () {
+            var me = $(this);
+
+
+            var doctorId = me.attr("data-id");
+            $.ajax(
+                {
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    url: "/Users/GetDoctorsSpecializations/ " + doctorId,
+                    data: {},
+                    success: function (data) {
+                        // Generate HTML table.
+                        // $('#' + doctorId).append(data);
+
+                        var txt = data.gender + "<br/>" + data.specialization + "<br/>" + data.experience + "<br/>"
+                        swal.fire({
+
+                            html:
+                                '<b> Gender: </b> ' + data.gender + '<br> <br>' +
+                                '<b> Specialization: </b>' + data.specialization + '<br><br>' +
+                                '<b> Experience: </b> ' + data.experience + ' year(s)' + '<br><br>' +
+                                '<b> Contact: </b>' + data.phone + '<br><br>' +
+                                '<b>Email: </b>' + data.email,
+
+
+                            title: "DR. " + data.name.toUpperCase(),
+                            text: txt,
+                            showCloseButton: true,
+                            showConfirmButton: false
+                        });
+
+                    },
+                    error: function (response) {
+                        console.log("Error: " + response);
+                    }
+
+
+
+                })
+        })
+
+
+
+    })
+
+
+
+</script>
+
+

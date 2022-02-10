@@ -1,0 +1,83 @@
+﻿@model DoctorAppointment_ManagementSystem.Models.Bill
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    <h4>Fee Bill</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BillNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bill_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bill_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bill_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bill_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Treatment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Treatment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPaid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPaid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.appointment.AppointmentNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.appointment.AppointmentNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User1.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User1.FullName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.bill_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

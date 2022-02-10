@@ -1,0 +1,259 @@
+﻿@model  List<DoctorAppointment_ManagementSystem.Models.User>
+
+
+@{
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+
+<style>
+    .welcome {
+        color: white;
+        opacity: 0.8;
+        width: auto;
+        height: auto;
+    }
+
+        .welcome:hover {
+            opacity: 1;
+        }
+
+        .welcome .content {
+            background-color: black;
+            padding: 9px;
+            margin-top: 25px;
+        }
+
+        .welcome h3 {
+            font-family: sans-serif;
+            font-weight: 100;
+            margin-top: 0;
+        }
+
+
+
+
+    /* Start statistics */
+    .statistics {
+        margin-top: 25px;
+        color: black;
+    }
+
+        .statistics .box {
+            padding: 18px;
+            overflow: hidden;
+            width: 300px;
+            height: 200px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+
+    #doc {
+        height: auto;
+        background-size: 350px;
+        background-image: url('../../Images/doc1.jpg');
+    }
+
+    #user {
+       height:auto;
+        background-size: 250px;
+        background-image: url('../../Images/docpat.jpg');
+
+    }
+
+    #patient {
+        height: auto;
+        background-size: 350px;
+        background-image: url('../../Images/sth.jpg');
+    }
+
+    #viewmore
+    {
+
+       
+        font-size:15px;
+        color:black;
+    }
+
+      #viewmore:hover
+    {
+        font-size:15px;
+        color:white;
+       
+    }
+
+    .statistics .box:hover {
+        background-color: black;
+        color: brown;
+        padding: 18px;
+        overflow: hidden;
+        width: 300px;
+        height: 200px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .statistics .box > i {
+        float: left;
+        color: black;
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        line-height: 60px;
+        font-size: 24px;
+    }
+
+    .statistics .box .info {
+        float: left;
+        width: auto;
+        margin-left: 2px;
+    }
+
+        .statistics .box .info h3 {
+            margin: 5px 0 5px;
+            color: black;
+            display: inline-block;
+        }
+
+        .statistics .box .info p {
+            color: black;
+            font-size: 20px;
+        }
+
+    /* End statistics */
+</style>
+
+<div class="col-xs-12 col-sm-9 content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><a href="javascript:void(0);" class="toggle-sidebar"><span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span></a> Dashboard</h3>
+        </div>
+        <div class="panel-body">
+            <div class="content-row">
+                <h2 class="content-row-title">
+                    Admin Dashboard
+                </h2>
+
+                <div class="welcome">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="content" style="border-radius: 6px; ">
+                                    <h3>Doctor Appointment Management System</h3>
+                                    <h4>Welcome to Dashboard</h4>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section class="statistics">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="box" id="user" style="border-radius: 6px;">
+                                    <h1 class="counter">@ViewBag.UsersActiveCount</h1> <span style="font-size:14px;">Active</span>
+                                    <p style="font-family:Calibri;font-weight:bold; font-size:25px;">Users</p>
+                                    <div class="info">
+                                       
+                                        <a href="~/Users/usersActive" id="viewmore">View more <i class="fas fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="box" id="doc" style="border-radius: 6px;">
+                                    <h1 class="counter">@ViewBag.DocActiveCount</h1> <span style="font-size:14px;">Active</span>
+                                    <p style="font-family:Calibri;font-weight:bold; font-size:25px;">Doctors</p>
+                                    <div class="info">
+
+                                      
+                                        <a href="~/Users/ActiveDocList" id="viewmore">View more <i class="fas fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="box" id="patient" style="border-radius: 6px; ">
+                                    @*<img src="~/Images/patient.png" alt="patientlogo" width="130" height="130"/>*@
+                                    <h1 class="counter">@ViewBag.PatientActiveCount</h1> <span style="font-size:14px;">Active</span>
+                                    <p style="font-family:Calibri;font-weight:bold; font-size:25px;">Patients</p>
+                                    <div class="info">
+                                        <a href="~/Users/ActivePatientList" id="viewmore">View more <i class="fas fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="box" id="user" style="border-radius: 6px;">
+                                    @*<img src="~/Images/inactiveusers.jpeg" style="width:200px; height:170px;"alt="UsersInActiveLogo" />*@
+                                    <h1 class="counter">@ViewBag.UsersInActiveCount</h1> <span style="font-size:14px;">InActive</span>
+                                    <p style="font-family:Calibri;font-weight:bold; font-size:25px;">Users</p>
+                                    <div class="info">
+                                        <a href="~/Users/usersInActive"id="viewmore">View more <i class="fas fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="box" id="doc" style="border-radius: 6px;">
+                                    <h1 class="counter">@ViewBag.DocInActiveCount</h1> <span style="font-size:14px;">InActive</span>
+                                    <p style="font-family:Calibri;font-weight:bold; font-size:25px;">Doctors</p>
+                                    <div class="info">
+                                        
+                            <a href="~/Users/InActiveDocList" id="viewmore">View more <i class="fas fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="box" id="patient" style="border-radius: 6px;">
+                                    <h1 class="counter">@ViewBag.PatientInActiveCount</h1> <span style="font-size:14px;">InActive</span>
+                                    <p style="font-family:Calibri;font-weight:bold; font-size:25px;">Patients</p>
+                                    <div class="counter">
+                                        <div class="info">
+                                            <a href="~/Users/PatientInActive" id="viewmore">View more <i class="fas fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+<script src="~/scripts/jquery.countup.js"></script>
+<script>
+    $('.counter').countUp();
+</script>
+
+<script>
+    var msg = '@TempData["Message"]';
+    if (msg.length) {
+        alert(msg);
+    }
+</script>

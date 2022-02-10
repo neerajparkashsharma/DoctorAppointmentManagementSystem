@@ -1,0 +1,201 @@
+﻿@model IEnumerable<DoctorAppointment_ManagementSystem.Models.User>
+
+@{
+    ViewBag.Title = "usersActive";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+}
+<script src="/Content/assets/bundles/datatables/datatables.min.js"></script>
+<script src="/Content/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script src="/Content/assets/bundles/jquery-ui/jquery-ui.min.js"></script>
+<!-- Page Specific JS File -->
+<script src="/Content/assets/js/page/datatables.js"></script>
+<!-- General CSS Files -->
+<link rel="stylesheet" href="/Content/assets/bundles/datatables/datatables.min.css">
+<link rel="stylesheet" href="/Content/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+<!-- Template CSS -->
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<section class="section" style="margin-top:40px; margin-left:20px">
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>
+                          Active Users
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="table-1">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                           Full Name
+                                        </th>
+                                        <th>Username</th>
+
+                                        <th class="text-center">DOB</th>
+                                        <th class="text-center">Gender</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.data)
+                                    {
+
+                                        <tr>
+
+                                            <td>@item.FullName</td>
+
+                                            <td>
+                                                @(item.UserName )
+                                            </td>
+                                            <td>
+                                                @(item.DOB.ToString("dd/MM/yyyy"))
+                                            </td>
+                                            <td>@item.Gender </td>
+                                            <td>@item.Email </td>
+
+                                            <td>
+                                                fadf
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+@*<div style="width:10%;">
+    <table class="table table-striped" id="tbl">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CNIC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedBy)
+            </th>
+
+            <th>
+                <label>Actions</label>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CNIC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.User_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.User_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.User_ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>*@
+
+
+
+
+
+<!-- General JS Scripts -->
+<script src="/Content/assets/js/app.min.js"></script>
+<!-- JS Libraies -->
+<!-- Template JS File -->
+<script src="/Content/assets/js/scripts.js"></script>
+<!-- Custom JS File -->
+<!-- JS Libraies -->
+<script src="/Content/assets/js/custom.js"></script>

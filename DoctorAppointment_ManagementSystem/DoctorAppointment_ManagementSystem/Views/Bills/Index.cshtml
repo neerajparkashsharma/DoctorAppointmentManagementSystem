@@ -1,0 +1,154 @@
+﻿@model IEnumerable<DoctorAppointment_ManagementSystem.Models.Bill>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    var grid = new WebGrid(canPage: true, rowsPerPage: 15);
+    grid.Bind(source: Model, rowCount: ViewBag.TotalRows, autoSortAndPage: false);
+}
+
+<br />
+<style>
+    * { 
+        box-sizing: border-box;
+    }
+
+    .tb {
+        max-width: 40%;
+        margin-left: 0;
+    }
+</style>
+
+
+<div class="container">
+    <div>
+
+        <div>
+            @using (Html.BeginForm("Index", "Bills", FormMethod.Get))
+            {
+                <div class="d-lg-inline-block">
+                    <input type="search" name="search" value="@ViewBag.search" class="form-control" placeholder="Search" style="width:199px;" />
+                    <br />
+                    <button type="submit" value="Search" class="btn btn-success" style="margin-left:130px; margin-top:0px;">Search</button>
+                </div>
+
+                <br />
+
+            }
+
+
+        </div>
+    </div>
+    <div class="tb">
+        @grid.Table(
+    tableStyle: "table table-responsive table-bordered",
+    columns: grid.Columns(
+        grid.Column(columnName: "BillNum", header: "Bill #"),
+        grid.Column(columnName: "appointment.AppointmentNo", header: "Appointment #"),
+           grid.Column(columnName: "User.FullName", header: "Doctor Name"),
+         grid.Column(columnName: "User1.FullName", header: "Patient Name"),
+        grid.Column(columnName: "bill_Amount", header: "Fee"),
+       grid.Column(columnName: "bill_date", header: "Bill Date"),
+         grid.Column(columnName: "IsPaid", header: "IsPaid"),
+             grid.Column(header: "Edit",
+             format: @<a data-value="" href="Edit/@item.bill_id">Edit</a>
+
+             ),
+               grid.Column(header: "Details",
+             format: @<a data-value="" href="Details/@item.bill_id">Details</a>
+
+             )
+
+                )
+               )
+
+        <div>
+            <div class="row">
+                <div class="col-sm-3">
+                    @grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-small pagination-right")
+                </div>
+            </div>
+        </div>
+
+        @Html.Hidden("dir", grid.SortDirection)
+        @Html.Hidden("col", grid.SortColumn)
+    </div>
+
+</div>
+
+
+
+
+
+
+
+@*<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BillNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bill_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bill_Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Treatment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.appointment.AppointmentNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User1.FullName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bill_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bill_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Treatment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsPaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.appointment.AppointmentNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User1.FullName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.bill_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.bill_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.bill_id })
+        </td>
+    </tr>
+}
+
+</table>*@

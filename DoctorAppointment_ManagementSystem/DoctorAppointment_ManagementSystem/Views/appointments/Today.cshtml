@@ -1,0 +1,120 @@
+﻿<!-- General CSS Files -->
+<link rel="stylesheet" href="/Content/assets/bundles/datatables/datatables.min.css">
+<link rel="stylesheet" href="/Content/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
+<!-- Template CSS -->
+<link rel="stylesheet" href="/Content/assets/css/style.css">
+
+<!-- Custom style CSS -->
+<!--<link rel="stylesheet" href="/Content/assets/css/custom.css">-->
+<script>$(".header-right a[href = '/Appointments/Today']").addClass("active");</script>
+
+<section class="section" style="margin-top:40px;">
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>
+                            Appointments  @if (Convert.ToInt32(@HttpContext.Current.Session["UserRole"]) == 3)
+                            {<a href="/appointments/new" style="color:black">(Book New Appointment)</a>}
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="table-1">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            #
+                                        </th>
+                                        <th>Appointment #</th>
+
+                                        <th>Patient</th>
+                                        <th>Doctor</th>
+                                        <th>Date Of Appointment</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ var i = 0;}
+                                    @foreach (var item in ViewBag.data)
+                                    {
+                                       
+                                        <tr>
+                                            <td>
+                                                @(i+1)
+                                            </td>
+                                            <td>@item.AppointmentNo</td>
+
+                                            <td>
+                                                @(item.User1 == null ? "n/a" : item.User1.FullName )
+                                            </td>
+                                            <td>
+                                                @(item.User == null ? "n/a" : item.User.FullName )
+                                            </td>
+                                            <td>@item.AppDate.ToString("dddd") - @item.AppDate.ToString("dd/MMMM/yyy") </td>
+                                            <td>
+                                                <div class="badge badge-success badge-shadow">@(item.AppointmentStatu == null ? "n/a" : item.AppointmentStatu.Status)</div>
+                                            </td>
+                                            <td>
+                                                @if (Convert.ToInt32(@HttpContext.Current.Session["UserRole"]) != 3)
+                                                {
+
+                                                    <a href="/appointments/appointmentRecommendations/@item.AppID"> <input type="button" id="btn2" class="btn btn-outline-info" value="Recommendation" data-id="@item.AppID"></a>
+                                                    <a href="/appointments/Bill/@item.AppID"> <input type="button" id="btn2" class="btn btn-outline-info" value="View Bill" data-id="@item.AppID"></a>
+
+                                                    <form action="/AppointmentRecommendations/Create" style="margin-top:10px">
+
+
+                                                        <button type="submit" id="btn2" class="btn btn-dark" value="@item.AppID" name="AppointmentId" data-id="@item.AppID">Recommend</button>
+
+
+                                                    </form>
+                                                    <form style="margin-top:10px;" action="/AppointmentPayments/Create">
+
+                                                        <button type="submit" id="btn2" class="btn btn-dark" value="@item.AppID" name="AppointmentId" data-id="@item.AppID">Payment</button>
+                                                    </form>
+
+
+
+                                                }
+
+                                                else
+                                                {
+
+                                                    <a href="/appointments/appointmentRecommendations/@item.AppID"> <input type="button" id="btn2" class="btn btn-dark" value="Doctor's Recommendation" data-id="@item.AppID"></a>
+                                                    <a href="/appointments/Bill/@item.AppID"> <input type="button" id="btn2" class="btn btn-outline-info" value="View Bill" data-id="@item.AppID"></a>
+
+                                                }
+
+
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+<!-- General JS Scripts -->
+<script src="/Content/assets/js/app.min.js"></script>
+<!-- JS Libraies -->
+<script src="/Content/assets/bundles/datatables/datatables.min.js"></script>
+<script src="/Content/assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script src="/Content/assets/bundles/jquery-ui/jquery-ui.min.js"></script>
+<!-- Page Specific JS File -->
+<script src="/Content/assets/js/page/datatables.js"></script>
+<!-- Template JS File -->
+<script src="/Content/assets/js/scripts.js"></script>
+<!-- Custom JS File -->
+<!-- JS Libraies -->
+<script src="/Content/assets/js/custom.js"></script>
+
